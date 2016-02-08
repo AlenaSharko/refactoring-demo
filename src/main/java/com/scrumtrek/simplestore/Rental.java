@@ -2,20 +2,20 @@ package com.scrumtrek.simplestore;
 
 public class Rental {
 	//todo что за m?
-	private Movie m_Movie;
-	private int m_DaysRented;
+	private Movie movieName;
+	private int daysRented;
 
 	public Rental(Movie movie, int daysRented) {
-		m_Movie = movie;
-		m_DaysRented = daysRented;
+		movieName = movie;
+		this.daysRented = daysRented;
 	}
 
 	public int getDaysRented() {
-		return m_DaysRented;
+		return daysRented;
 	}
 
 	public Movie getMovie() {
-		return m_Movie;
+		return movieName;
 	}
 }
 

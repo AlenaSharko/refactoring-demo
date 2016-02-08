@@ -3,6 +3,7 @@ package com.scrumtrek.simplestore;
 class MainClass {
 	//todo может public static void main() ? приоритет "1"
 	 public static void main(String[] args) {
+		 Printer printer = new ConsolePrinter();
 		// Create movies
 		Movie movCinderella = new Movie("Cinderella", PriceCodes.Childrens);
 		Movie movStarWars = new Movie("Star Wars", PriceCodes.Regular);
@@ -28,7 +29,7 @@ class MainClass {
 		String statement = custMickeyMouse.Statement();
 
 		// Print the statement
-		System.out.println(statement);		
+		 printer.print(statement);
 	}
 }
 

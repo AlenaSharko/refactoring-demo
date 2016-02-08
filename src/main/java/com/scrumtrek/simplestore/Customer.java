@@ -4,75 +4,80 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Customer {
-	//todo непонятное обозначенние переменных m?
-	private String m_Name;
-	private List<Rental> m_Rentals = new ArrayList<Rental>();
+    //todo непонятное обозначенние переменных m?
+    private String customerName;
+    private List<Rental> customerRentals = new ArrayList<Rental>();
 
-	public Customer(String name) {
-		m_Name = name;
-	}
+    public Customer(String name) {
+        customerName = name;
+    }
 
-	public String getName() {
-		return m_Name;
-	}
+    public String getName() {
+        return customerName;
+    }
+
+    public static final int REGULAR_BONUS = 2;
+    public static final int REGULAR_DAYS = 2;
+    public static final int NEW_RELEASE_BONUS = 3;
+    public static final double CHILDREN_BONUS = 1.5;
+    public static final int CHILDREN_DAYS = 3;
+    public static final double REGULAR_ADD = 1.5;
+    public static final double CHILDREN_ADD = 1.5;
 
 
-	public void addRental(Rental arg){
-		m_Rentals.add(arg);
-	}
 
-	//todo приоритет "2", statment
-	public String Statement()
-	{
-		double totalAmount = 0;
-		int frequentRenterPoints = 0;
-				
-		String result = "Rental record for " + m_Name + "\n";
-		
-		for(Rental each: m_Rentals) {
-			double thisAmount = 0;
-			//todo подсчет thisAmount вынести в отдельный метод
-			// Determine amounts for each line
-			switch(each.getMovie().getPriceCode()) {
-				case Regular:
-					thisAmount += 2;
-					if (each.getDaysRented() > 2)
-					{
-						thisAmount += (each.getDaysRented() - 2) * 1.5;
-					}
-					break;
-	
-				case NewRelease:
-					thisAmount += each.getDaysRented() * 3;
-					break;
-	
-				case Childrens:
-					thisAmount += 1.5;
-					if (each.getDaysRented() > 3)
-					{
-						thisAmount = (each.getDaysRented() - 3) * 1.5;
-					}
-					break;
-			}
-			//todo подсчет frequentRenterPoints в отдельный метод
-			// Add frequent renter points
-			frequentRenterPoints++;
+    public void addRental(Rental arg) {
+        customerRentals.add(arg);
+    }
 
-			// Add bonus for a two-day new-release rental
-			if ((each.getMovie().getPriceCode() == PriceCodes.NewRelease) && (each.getDaysRented() > 1))
-			{
-				frequentRenterPoints ++;
-			}
+    //todo приоритет "2", statment
+    public String Statement() {
+        double totalAmount = 0;
+        int frequentRenterPoints = 0;
 
-			// Show figures for this rental
-			result += "\t" + each.getMovie().getTitle() + "\t" + thisAmount + "\n";
-			totalAmount += thisAmount;
-		}
+        String result = "Rental record for " + customerName + "\n";
 
-		// Add footer lines
-		result += "Amount owed is " + totalAmount + "\n";
-		result += "You earned " + frequentRenterPoints + " frequent renter points.";
-		return result;
-	}
+        for (Rental each : customerRentals) {
+            double thisAmount = 0;
+            //todo подсчет thisAmount вынести в отдельный метод
+            // Determine amounts for each line
+            switch (each.getMovie().getPriceCode()) {
+                case Regular:
+                    thisAmount += REGULAR_BONUS;
+                    if (each.getDaysRented() > REGULAR_DAYS) {
+                        thisAmount += (each.getDaysRented() - REGULAR_DAYS) * REGULAR_ADD;
+                    }
+                    break;
+
+                case NewRelease:
+                    thisAmount += each.getDaysRented() * NEW_RELEASE_BONUS;
+                    break;
+
+                case Childrens:
+                    thisAmount += CHILDREN_BONUS;
+                    if (each.getDaysRented() > CHILDREN_DAYS) {
+                        thisAmount = (each.getDaysRented() - CHILDREN_DAYS) * CHILDREN_ADD;
+                    }
+                    break;
+            }
+            //todo подсчет frequentRenterPoints в отдельный метод
+            // Add frequent renter points
+            frequentRenterPoints++;
+
+            // Add bonus for a two-day new-release rental
+            if ((each.getMovie().getPriceCode() == PriceCodes.NewRelease) && (each.getDaysRented() > 1)) {
+                frequentRenterPoints++;
+            }
+
+            // Show figures for this rental
+            result += "\t" + each.getMovie().getTitle() + "\t" + thisAmount + "\n";
+            totalAmount += thisAmount;
+        }
+
+        // Add footer lines
+        result += "Amount owed is " + totalAmount + "\n";
+        result += "You earned " + frequentRenterPoints + " frequent renter points.";
+        return result;
+    }
 }
 

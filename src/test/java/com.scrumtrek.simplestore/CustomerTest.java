@@ -30,12 +30,12 @@ public class CustomerTest {
     @Test
     public void statementNewReleaseWithMoreDaysTest() {
         movie.setPriceCode(PriceCodes.NewRelease);
-        testCustomer.addRental(new Rental(movie, 5));
+        testCustomer.addRental(new Rental(movie, 3));
         String actualString = testCustomer.Statement();
 
         Assert.assertEquals("Rental record for test\n" +
-                "\ttestMovie\t15.0\n" +
-                "Amount owed is 15.0\n" +
+                "\ttestMovie\t9.0\n" +
+                "Amount owed is 9.0\n" +
                 "You earned 2 frequent renter points.", actualString);
     }
 
@@ -48,22 +48,22 @@ public class CustomerTest {
         boolean bool = actualString.contains("testMovie\t2.0");
         Assert.assertTrue(bool);
 //
-//        Assert.assertEquals("Rental record for test\n" +
-//                "\ttestMovie\t2.0\n" +
-//                "Amount owed is 2.0\n" +
-//                "You earned 1 frequent renter points.", actualString);
+//        Assert.assertEquals("Rental record for test
+//        testMovie	3.5
+//        Amount owed is 3.5
+//        You earned 1 frequent renter points.", actualString);
     }
 
     @Test
     public void stateRegularMaxTest() {
         movie.setPriceCode(PriceCodes.Regular);
-        testCustomer.addRental(new Rental(movie, 5));
+        testCustomer.addRental(new Rental(movie, 3));
 
         String actualString = testCustomer.Statement();
 
         Assert.assertEquals("Rental record for test\n" +
-                "\ttestMovie\t6.5\n" +
-                "Amount owed is 6.5\n" +
+                "\ttestMovie\t3.5\n" +
+                "Amount owed is 3.5\n" +
                 "You earned 1 frequent renter points.", actualString);
     }
 
@@ -83,13 +83,13 @@ public class CustomerTest {
     @Test
     public void stateChildrensMaxTest() {
         movie.setPriceCode(PriceCodes.Childrens);
-        testCustomer.addRental(new Rental(movie, 5));
+        testCustomer.addRental(new Rental(movie, 4));
 
         String actualString = testCustomer.Statement();
 
         Assert.assertEquals("Rental record for test\n" +
-                "\ttestMovie\t3.0\n" +
-                "Amount owed is 3.0\n" +
+                "\ttestMovie\t1.5\n" +
+                "Amount owed is 1.5\n" +
                 "You earned 1 frequent renter points.", actualString);
     }
 
