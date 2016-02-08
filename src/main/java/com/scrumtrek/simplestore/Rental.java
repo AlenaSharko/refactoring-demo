@@ -25,19 +25,19 @@ public class Rental {
 
 	public double getAmount() {
 		double thisAmount = 0.0;
-		switch (getMovie().getPriceCode().getName()) {
-			case RegularPriceCode.REGULAR_PRICE_CODE_NAME:
-				thisAmount = getMovie().getPriceCode().getAmount(thisAmount, daysRented);
-				break;
-			case NewReleasePriceCode.NEW_RELEASE_PRICE_CODE_NAME:
-				thisAmount = getMovie().getPriceCode().getAmount(thisAmount, daysRented);
-				break;
-			case ChildrenPriceCode.CHILDREN_PRICE_CODE_NAME:
-				thisAmount = getMovie().getPriceCode().getAmount(thisAmount, daysRented);
-				break;
-			default:
-				break;
-		}
+//		switch (getMovie().getPriceCode().getName()) {
+//			case RegularPriceCode.REGULAR_PRICE_CODE_NAME:
+//				thisAmount = getMovie().getPriceCode().getAmount(thisAmount, daysRented);
+//				break;
+//			case NewReleasePriceCode.NEW_RELEASE_PRICE_CODE_NAME:
+//				thisAmount = getMovie().getPriceCode().getAmount(thisAmount, daysRented);
+//				break;
+//			case ChildrenPriceCode.CHILDREN_PRICE_CODE_NAME:
+//				thisAmount = getMovie().getPriceCode().getAmount(thisAmount, daysRented);
+//				break;
+//			default:
+//				break;
+		thisAmount = getMovie().getPriceCode().getAmount(thisAmount, daysRented);
 		return thisAmount;
 	}
 
