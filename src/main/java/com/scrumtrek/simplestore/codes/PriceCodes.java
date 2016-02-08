@@ -1,6 +1,6 @@
-package com.scrumtrek.simplestore;
+package com.scrumtrek.simplestore.codes;
 
-interface PriceCodes {
+public interface PriceCodes {
 	double getAmount(double amount, int rentalDays);
 
 	String getName();

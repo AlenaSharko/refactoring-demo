@@ -1,5 +1,11 @@
 package com.scrumtrek.simplestore;
 
+import com.scrumtrek.simplestore.codes.ChildrenPriceCode;
+import com.scrumtrek.simplestore.codes.NewReleasePriceCode;
+import com.scrumtrek.simplestore.codes.RegularPriceCode;
+import com.scrumtrek.simplestore.printer.ConsolePrinter;
+import com.scrumtrek.simplestore.printer.Printer;
+
 class MainClass {
 	//todo может public static void main() ? приоритет "1"
 	 public static void main(String[] args) {

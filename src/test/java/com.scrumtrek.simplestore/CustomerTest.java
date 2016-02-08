@@ -1,5 +1,8 @@
 package com.scrumtrek.simplestore;
 
+import com.scrumtrek.simplestore.codes.ChildrenPriceCode;
+import com.scrumtrek.simplestore.codes.NewReleasePriceCode;
+import com.scrumtrek.simplestore.codes.RegularPriceCode;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;

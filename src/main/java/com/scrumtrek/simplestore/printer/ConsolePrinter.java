@@ -1,4 +1,6 @@
-package com.scrumtrek.simplestore;
+package com.scrumtrek.simplestore.printer;
+
+import com.scrumtrek.simplestore.printer.Printer;
 
 public class ConsolePrinter implements Printer {
 

@@ -1,5 +1,10 @@
 package com.scrumtrek.simplestore;
 
+import com.scrumtrek.simplestore.codes.ChildrenPriceCode;
+import com.scrumtrek.simplestore.codes.NewReleasePriceCode;
+import com.scrumtrek.simplestore.codes.PriceCodes;
+import com.scrumtrek.simplestore.codes.RegularPriceCode;
+
 public class Rental {
 	//todo что за m?
 	private Movie movieName;

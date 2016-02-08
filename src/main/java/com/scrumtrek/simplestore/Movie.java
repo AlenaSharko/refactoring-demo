@@ -1,5 +1,7 @@
 package com.scrumtrek.simplestore;
 
+import com.scrumtrek.simplestore.codes.PriceCodes;
+
 public class Movie {
 	private String movieTitle;
 	private PriceCodes moviePriceCode;
