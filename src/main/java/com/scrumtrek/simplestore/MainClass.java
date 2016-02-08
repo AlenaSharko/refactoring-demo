@@ -1,7 +1,8 @@
 package com.scrumtrek.simplestore;
 
 class MainClass {
-	 static void Main(String[] args) {
+	//todo может public static void main() ? приоритет "1"
+	 public static void main(String[] args) {
 		// Create movies
 		Movie movCinderella = new Movie("Cinderella", PriceCodes.Childrens);
 		Movie movStarWars = new Movie("Star Wars", PriceCodes.Regular);
@@ -9,6 +10,7 @@ class MainClass {
 
 		// Create customers
 		Customer custMickeyMouse = new Customer("Mickey Mouse");
+		 //todo бесполезные переменные
 		Customer custDonaldDuck = new Customer("Donald Duck");
 		Customer custMinnieMouse = new Customer("Minnie Mouse");
 

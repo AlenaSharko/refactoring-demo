@@ -1,6 +1,7 @@
 package com.scrumtrek.simplestore;
 
 public class Rental {
+	//todo что за m?
 	private Movie m_Movie;
 	private int m_DaysRented;
 

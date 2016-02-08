@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Customer {
+	//todo непонятное обозначенние переменных m?
 	private String m_Name;
 	private List<Rental> m_Rentals = new ArrayList<Rental>();
 
@@ -20,6 +21,7 @@ public class Customer {
 		m_Rentals.add(arg);
 	}
 
+	//todo приоритет "2", statment
 	public String Statement()
 	{
 		double totalAmount = 0;
@@ -29,7 +31,7 @@ public class Customer {
 		
 		for(Rental each: m_Rentals) {
 			double thisAmount = 0;
-			
+			//todo подсчет thisAmount вынести в отдельный метод
 			// Determine amounts for each line
 			switch(each.getMovie().getPriceCode()) {
 				case Regular:
@@ -52,7 +54,7 @@ public class Customer {
 					}
 					break;
 			}
-
+			//todo подсчет frequentRenterPoints в отдельный метод
 			// Add frequent renter points
 			frequentRenterPoints++;
 
