@@ -8,8 +8,7 @@ public class NewReleasePriceCode implements PriceCodes {
 
     @Override
     public double getAmount(double amount, int rentalDays) {
-        amount += rentalDays * NEW_RELEASE_BONUS;
-        return amount;
+        return rentalDays * NEW_RELEASE_BONUS;
     }
     
     public String getName() {

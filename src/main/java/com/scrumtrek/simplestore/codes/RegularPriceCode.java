@@ -10,11 +10,10 @@ public class RegularPriceCode implements PriceCodes {
 
     @Override
     public double getAmount(double amount, int rentalDays) {
-        amount += REGULAR_BONUS;
         if (rentalDays > REGULAR_DAYS) {
-            amount += (rentalDays - REGULAR_DAYS) * REGULAR_ADD;
+            return  (rentalDays - REGULAR_DAYS) * REGULAR_ADD + REGULAR_BONUS;
         }
-        return amount;
+        return REGULAR_BONUS;
     }
 
     public String getName() {
