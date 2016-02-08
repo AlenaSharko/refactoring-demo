@@ -53,13 +53,13 @@ public class CustomerTest {
         testCustomer.addRental(new Rental(movie, 1));
 
         String actualString = testCustomer.Statement();
-        boolean bool = actualString.contains("testMovie\t2.0");
-        Assert.assertTrue(bool);
-//
-//        Assert.assertEquals("Rental record for test
-//        testMovie	3.5
-//        Amount owed is 3.5
-//        You earned 1 frequent renter points.", actualString);
+        //boolean bool = actualString.contains("testMovie\t2.0");
+        //Assert.assertTrue(bool);
+
+        Assert.assertEquals("Rental record for test\n" +
+                "\ttestMovie\t2.0\n" +
+                "Amount owed is 2.0\n" +
+                "You earned 1 frequent renter points.", actualString);
     }
 
     @Test
