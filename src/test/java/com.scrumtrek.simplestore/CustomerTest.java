@@ -12,12 +12,12 @@ public class CustomerTest {
     @Before
     public void setUp() {
         testCustomer = new Customer("test");
-        movie = new Movie("testMovie", PriceCodes.Regular);
+        movie = new Movie("testMovie", new RegularPriceCode());
     }
 
     @Test
     public void statementNewReleaseTest() {
-        movie.setPriceCode(PriceCodes.NewRelease);
+        movie.setPriceCode(new NewReleasePriceCode());
         testCustomer.addRental(new Rental(movie, 1));
         String actualString = testCustomer.Statement();
 
@@ -29,7 +29,7 @@ public class CustomerTest {
 
     @Test
     public void statementNewReleaseWithMoreDaysTest() {
-        movie.setPriceCode(PriceCodes.NewRelease);
+        movie.setPriceCode(new NewReleasePriceCode());
         testCustomer.addRental(new Rental(movie, 3));
         String actualString = testCustomer.Statement();
 
@@ -41,7 +41,7 @@ public class CustomerTest {
 
     @Test
     public void statementRegularMinTest() {
-        movie.setPriceCode(PriceCodes.Regular);
+        movie.setPriceCode(new RegularPriceCode());
         testCustomer.addRental(new Rental(movie, 1));
 
         String actualString = testCustomer.Statement();
@@ -56,7 +56,7 @@ public class CustomerTest {
 
     @Test
     public void stateRegularMaxTest() {
-        movie.setPriceCode(PriceCodes.Regular);
+        movie.setPriceCode(new RegularPriceCode());
         testCustomer.addRental(new Rental(movie, 3));
 
         String actualString = testCustomer.Statement();
@@ -69,7 +69,7 @@ public class CustomerTest {
 
     @Test
     public void stateChildrensMinTest() {
-        movie.setPriceCode(PriceCodes.Childrens);
+        movie.setPriceCode(new ChildrenPriceCode());
         testCustomer.addRental(new Rental(movie, 2));
 
         String actualString = testCustomer.Statement();
@@ -82,7 +82,7 @@ public class CustomerTest {
 
     @Test
     public void stateChildrensMaxTest() {
-        movie.setPriceCode(PriceCodes.Childrens);
+        movie.setPriceCode(new ChildrenPriceCode());
         testCustomer.addRental(new Rental(movie, 4));
 
         String actualString = testCustomer.Statement();
@@ -95,7 +95,7 @@ public class CustomerTest {
 
     @Test
     public void someRentalsTest() {
-        movie.setPriceCode(PriceCodes.Childrens);
+        movie.setPriceCode(new ChildrenPriceCode());
         testCustomer.addRental(new Rental(movie, 5));
         testCustomer.addRental(new Rental(movie, 1));
 

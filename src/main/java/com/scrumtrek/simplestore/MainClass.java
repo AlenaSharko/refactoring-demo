@@ -5,9 +5,9 @@ class MainClass {
 	 public static void main(String[] args) {
 		 Printer printer = new ConsolePrinter();
 		// Create movies
-		Movie movCinderella = new Movie("Cinderella", PriceCodes.Childrens);
-		Movie movStarWars = new Movie("Star Wars", PriceCodes.Regular);
-		Movie movGladiator = new Movie("Gladiator", PriceCodes.NewRelease);
+		Movie movCinderella = new Movie("Cinderella", new ChildrenPriceCode());
+		Movie movStarWars = new Movie("Star Wars", new RegularPriceCode());
+		Movie movGladiator = new Movie("Gladiator", new NewReleasePriceCode());
 
 		// Create customers
 		Customer custMickeyMouse = new Customer("Mickey Mouse");

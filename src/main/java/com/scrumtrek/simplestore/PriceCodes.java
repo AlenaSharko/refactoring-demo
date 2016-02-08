@@ -1,7 +1,7 @@
 package com.scrumtrek.simplestore;
 
-public enum PriceCodes {
-	Regular,
-	NewRelease,
-	Childrens
+interface PriceCodes {
+	double getAmount(double amount, int rentalDays);
+
+	String getName();
 }
