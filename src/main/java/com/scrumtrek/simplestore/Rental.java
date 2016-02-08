@@ -9,7 +9,6 @@ public class Rental {
 	//todo что за m?
 	private Movie movieName;
 	private int daysRented;
-	private PriceCodes priceCode;
 
 	public Rental(Movie movie, int daysRented) {
 		movieName = movie;
@@ -36,18 +35,19 @@ public class Rental {
 			case ChildrenPriceCode.CHILDREN_PRICE_CODE_NAME:
 				thisAmount = getMovie().getPriceCode().getAmount(thisAmount, daysRented);
 				break;
+			default:
+				break;
 		}
 		return thisAmount;
 	}
 
-	public int getUpdatedFreqPoints(int frequentRenterPoints) {
-		frequentRenterPoints++;
+	public int getUpdatedFreqPoints() {
 		// Add bonus for a two-day new-release rental
 		if ((getMovie().getPriceCode().getName().equals(NewReleasePriceCode.NEW_RELEASE_PRICE_CODE_NAME) &&
 				(getDaysRented() > 1))) {
-			frequentRenterPoints++;
+			return 2;
 		}
-		return frequentRenterPoints;
+		return 1;
 	}
 }
 

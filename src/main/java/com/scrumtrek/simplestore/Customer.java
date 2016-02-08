@@ -29,7 +29,7 @@ public class Customer {
 
         for (Rental each : customerRentals) {
             double thisAmount = each.getAmount();
-            frequentRenterPoints = each.getUpdatedFreqPoints(frequentRenterPoints);
+            frequentRenterPoints += each.getUpdatedFreqPoints();
             // Show figures for this rental
             result += "\t" + each.getMovie().getTitle() + "\t" + thisAmount + "\n";
             totalAmount += thisAmount;
