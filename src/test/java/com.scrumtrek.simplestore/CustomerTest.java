@@ -2,10 +2,15 @@ package com.scrumtrek.simplestore;
 
 import com.scrumtrek.simplestore.codes.ChildrenPriceCode;
 import com.scrumtrek.simplestore.codes.NewReleasePriceCode;
+import com.scrumtrek.simplestore.codes.PriceCodes;
 import com.scrumtrek.simplestore.codes.RegularPriceCode;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+
+import static org.mockito.Matchers.any;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 public class CustomerTest {
 
@@ -109,5 +114,15 @@ public class CustomerTest {
                 "\ttestMovie\t1.5\n" +
                 "Amount owed is 4.5\n" +
                 "You earned 2 frequent renter points.", actualString);
+    }
+
+    @Test
+    public void defaultStatePriceCodeTest() {
+        PriceCodes priceCodes = mock(PriceCodes.class);
+        Movie movie = new Movie("testFilm", priceCodes);
+        when(priceCodes.getName()).thenReturn("blabla");
+        Rental rental = new Rental(movie, 1);
+        double amount = rental.getAmount();
+        Assert.assertEquals(0.0, amount, 0.0);
     }
 }

@@ -24,9 +24,7 @@ public class Customer {
     public String Statement() {
         double totalAmount = 0;
         int frequentRenterPoints = 0;
-
         String result = "Rental record for " + customerName + "\n";
-
         for (Rental each : customerRentals) {
             double thisAmount = each.getAmount();
             frequentRenterPoints += each.getUpdatedFreqPoints();
@@ -34,7 +32,6 @@ public class Customer {
             result += "\t" + each.getMovie().getTitle() + "\t" + thisAmount + "\n";
             totalAmount += thisAmount;
         }
-
         // Add footer lines
         result += "Amount owed is " + totalAmount + "\n";
         result += "You earned " + frequentRenterPoints + " frequent renter points.";
