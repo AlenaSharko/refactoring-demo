@@ -7,29 +7,29 @@ import java.util.List;
 
 public class Customer {
 
-    private String m_Name;
-    private List<Rental> m_Rentals = new ArrayList<Rental>();
+    private String mName;
+    private List<Rental> mRentals = new ArrayList<Rental>();
     private Decorator decorator;
 
     public Customer(String name, Decorator decorator) {
-        m_Name = name;
+        mName = name;
         this.decorator = decorator;
     }
 
     public String getName() {
-        return m_Name;
+        return mName;
     }
 
     public void addRental(Rental arg) {
-        m_Rentals.add(arg);
+        mRentals.add(arg);
     }
 
     public String Statement() {
         double totalAmount = 0;
         int frequentRenterPoints = 0;
 
-        String result = decorator.decorateName(m_Name);
-        for (Rental each : m_Rentals) {
+        String result = decorator.decorateName(mName);
+        for (Rental each : mRentals) {
 
             double currentPrice = getCurrentMoviePrice(each); // Add frequent renter points
             frequentRenterPoints++;
