@@ -5,11 +5,12 @@
  */
 package com.scrumtrek.simplestore;
 
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import com.scrumtrek.simplestore.decorator.BaseStringDecorator;
+import com.scrumtrek.simplestore.decorator.Decorator;
+import com.scrumtrek.simplestore.decorator.HTMLDecorate;
+
+import org.junit.*;
+
 import static org.junit.Assert.*;
 
 /**
@@ -43,7 +44,7 @@ public class CustomerTest {
     @Test
     public void testRegularStatement() {
         System.out.println("Statement");
-        Customer instance = new Customer("Igor Startsev");
+        Customer instance = new Customer("Igor Startsev", new BaseStringDecorator());
         Movie m = new Movie("007", PriceCodes.Regular);
         instance.addRental(new Rental(m, 3));
         String expResult = "Rental record for " + instance.getName() + "\n";
@@ -64,7 +65,7 @@ public class CustomerTest {
         @Test
     public void testChildrensStatement() {
         System.out.println("Statement");
-        Customer instance = new Customer("Igor Startsev");
+        Customer instance = new Customer("Igor Startsev", new BaseStringDecorator());
         Movie m = new Movie("007", PriceCodes.Childrens);
         instance.addRental(new Rental(m, 3));
         String expResult = "Rental record for " + instance.getName() + "\n";
@@ -85,7 +86,7 @@ public class CustomerTest {
             @Test
     public void tesNewReleaseStatement() {
         System.out.println("Statement");
-        Customer instance = new Customer("Igor Startsev");
+        Customer instance = new Customer("Igor Startsev", new BaseStringDecorator());
         Movie m = new Movie("007", PriceCodes.NewRelease);
         instance.addRental(new Rental(m, 3));
         String expResult = "Rental record for " + instance.getName() + "\n";
@@ -106,7 +107,7 @@ public class CustomerTest {
             @Test
     public void tesNewReleaseOneDayStatement() {
         System.out.println("Statement");
-        Customer instance = new Customer("Igor Startsev");
+        Customer instance = new Customer("Igor Startsev", new BaseStringDecorator());
         Movie m = new Movie("007", PriceCodes.NewRelease);
         instance.addRental(new Rental(m, 1));
         String expResult = "Rental record for " + instance.getName() + "\n";
@@ -127,7 +128,7 @@ public class CustomerTest {
     @Test
     public void testXXXStatement() {
         System.out.println("Statement");
-        Customer instance = new Customer("Igor Startsev");
+        Customer instance = new Customer("Igor Startsev", new BaseStringDecorator());
         Movie m = new Movie("007", PriceCodes.XXX);
         instance.addRental(new Rental(m, 1));
         String expResult = "Rental record for " + instance.getName() + "\n";
@@ -146,7 +147,7 @@ public class CustomerTest {
     @Test
     public void testXXXWithMoreDays() {
         System.out.println("Statement");
-        Customer instance = new Customer("Igor Startsev");
+        Customer instance = new Customer("Igor Startsev", new BaseStringDecorator());
         Movie m = new Movie("007", PriceCodes.XXX);
         instance.addRental(new Rental(m, 6));
         String expResult = "Rental record for " + instance.getName() + "\n";
@@ -165,7 +166,7 @@ public class CustomerTest {
     
     @Test
     public void getCurrentMoviePriceNewReleaseTest(){
-        Customer cust = new Customer("Stasik");
+        Customer cust = new Customer("Stasik", new BaseStringDecorator());
         Movie movie = new Movie("Star Treck", PriceCodes.NewRelease);
         Rental rental = new Rental(movie, 1);
         double actualPrice = cust.getCurrentMoviePrice(rental);
@@ -174,7 +175,7 @@ public class CustomerTest {
     
         @Test
     public void getCurrentMoviePriceChildrenTest(){
-        Customer cust = new Customer("Stasik");
+        Customer cust = new Customer("Stasik", new BaseStringDecorator());
         Movie movie = new Movie("Cinderella", PriceCodes.Childrens);
         Rental rental = new Rental(movie, 1);
         double actualPrice = cust.getCurrentMoviePrice(rental);
@@ -183,7 +184,7 @@ public class CustomerTest {
     
         @Test
     public void getCurrentMoviePriceRegularTest(){
-        Customer cust = new Customer("Stasik");
+        Customer cust = new Customer("Stasik", new BaseStringDecorator());
         Movie movie = new Movie("Cinderella", PriceCodes.Regular);
         Rental rental = new Rental(movie, 1);
         double actualPrice = cust.getCurrentMoviePrice(rental);
@@ -193,7 +194,7 @@ public class CustomerTest {
       @Test
     public void testRegularOneDayStatement() {
         System.out.println("Statement");
-        Customer instance = new Customer("Igor Startsev");
+        Customer instance = new Customer("Igor Startsev", new BaseStringDecorator());
         Movie m = new Movie("007", PriceCodes.Regular);
         instance.addRental(new Rental(m, 1));
         String expResult = "Rental record for " + instance.getName() + "\n";
@@ -214,7 +215,7 @@ public class CustomerTest {
         @Test
     public void testChildrensOneDayStatement() {
         System.out.println("Statement");
-        Customer instance = new Customer("Igor Startsev");
+        Customer instance = new Customer("Igor Startsev", new BaseStringDecorator());
         Movie m = new Movie("007", PriceCodes.Childrens);
         instance.addRental(new Rental(m, 4));
         String expResult = "Rental record for " + instance.getName() + "\n";
@@ -230,6 +231,48 @@ public class CustomerTest {
         assertTrue(result.equals(expResult));
         // TODO review the generated test code and remove the default call to fail.
 
+    }
+
+    @Test
+    public void baseStringDecoratorTest() {
+        Decorator baseStringDecorator = new BaseStringDecorator();
+        String testString = "decorate me";
+
+        String decorateName = baseStringDecorator.decorateName(testString);
+        Assert.assertEquals(Report.TITLE.getMessage() + testString + "\n", decorateName);
+
+        String decorateFilm = baseStringDecorator.decorateFilm(testString, 0.0);
+        Assert.assertEquals("\t" + testString + "\t" + 0.0 + "\n", decorateFilm);
+
+        String decorateAmount = baseStringDecorator.decorateAmount(1.0);
+        Assert.assertEquals(Report.AMOUNT_TEXT_REPORT.getMessage() + 1.0 + "\n", decorateAmount);
+
+        String decoratePoints = baseStringDecorator.decoratePoint(100);
+        Assert.assertEquals(Report.EARNED_TEXT.getMessage() + 100 + Report.END_PART.getMessage(), decoratePoints);
+    }
+
+    @Test
+    public void HTMLDecoratorTest() {
+        Decorator baseStringDecorator = new HTMLDecorate();
+        String testString = "decorate me";
+        String startHtml = "<html>\n" +
+                "    <head></head>\n" +
+                "    <body>\n";
+
+        String endHTML = "    </body>\n" +
+                "</html>";
+
+        String decorateName = baseStringDecorator.decorateName(testString);
+        Assert.assertEquals(startHtml + Report.TITLE.getMessage() + testString + "<br>", decorateName);
+
+        String decorateFilm = baseStringDecorator.decorateFilm(testString, 0.0);
+        Assert.assertEquals(testString + " <b>" + 0.0 + "</b>" + "<br>", decorateFilm);
+
+        String decorateAmount = baseStringDecorator.decorateAmount(1.0);
+        Assert.assertEquals(Report.AMOUNT_TEXT_REPORT.getMessage() + " <b>" + 1.0 + "</b>" + "<br>", decorateAmount);
+
+        String decoratePoints = baseStringDecorator.decoratePoint(100);
+        Assert.assertEquals(Report.EARNED_TEXT.getMessage() + 100 + Report.END_PART.getMessage() + endHTML, decoratePoints);
     }
 
 }

@@ -5,19 +5,23 @@
  */
 package com.scrumtrek.simplestore;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
- *
  * @author root
  */
-public class Report {
+public enum Report {
+    TITLE("Rental record for "),
+    AMOUNT_TEXT_REPORT("Amount owed is "),
+    EARNED_TEXT("You earned "),
+    END_PART(" frequent renter points.");
 
+    private String message;
 
- public static final String TITLE = "Rental record for ";
- public static final String AMOUNT_TEXT_REPORT =  "Amount owed is ";
- public static final String EARNED_TEXT = "You earned ";
- public static final String END_PART = " frequent renter points.";
-    
+    Report(String message) {
+        this.message = message;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
 }

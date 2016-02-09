@@ -1,5 +1,7 @@
 package com.scrumtrek.simplestore;
 
+import com.scrumtrek.simplestore.decorator.Decorator;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,9 +9,11 @@ public class Customer {
 
     private String m_Name;
     private List<Rental> m_Rentals = new ArrayList<Rental>();
+    private Decorator decorator;
 
-    public Customer(String name) {
+    public Customer(String name, Decorator decorator) {
         m_Name = name;
+        this.decorator = decorator;
     }
 
     public String getName() {
@@ -24,8 +28,7 @@ public class Customer {
         double totalAmount = 0;
         int frequentRenterPoints = 0;
 
-        String result = Report.TITLE + m_Name + "\n";
-
+        String result = decorator.decorateName(m_Name);
         for (Rental each : m_Rentals) {
 
             double currentPrice = getCurrentMoviePrice(each); // Add frequent renter points
@@ -37,16 +40,14 @@ public class Customer {
             }
 
             // Show figures for this rental
-            result += "\t" + each.getMovie().getTitle() + "\t" + currentPrice + "\n";
+            result += decorator.decorateFilm(each.getMovie().getTitle(), currentPrice);
 
             totalAmount += currentPrice;
         }
 
         // Add footer lines
-        result += Report.AMOUNT_TEXT_REPORT + totalAmount + "\n";
-
-        result += Report.EARNED_TEXT + frequentRenterPoints + Report.END_PART;
-
+        result += decorator.decorateAmount(totalAmount);
+        result += decorator.decoratePoint(frequentRenterPoints);
         return result;
     }
 
