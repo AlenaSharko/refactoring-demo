@@ -8,12 +8,15 @@ import java.util.List;
 public class Customer {
 
     private String mName;
-    private List<Rental> mRentals = new ArrayList<Rental>();
-    private Decorator decorator;
 
-    public Customer(String name, Decorator decorator) {
+    public Customer() {
+        super();
+    }
+
+    private List<Rental> mRentals = new ArrayList<Rental>();
+
+    public Customer(String name) {
         mName = name;
-        this.decorator = decorator;
     }
 
     public String getName() {
@@ -24,34 +27,31 @@ public class Customer {
         mRentals.add(arg);
     }
 
-    public String statement() {
+    public double getTotalAmount() {
         double totalAmount = 0;
-        int frequentRenterPoints = 0;
-        String result = decorator.decorateName(mName);
+
         for (Rental each : mRentals) {
             for(Movie movie : each.getMovieList()) {
                 double currentPrice = getCurrentMoviePrice(each, movie);
-                frequentRenterPoints++;
-                if ((movie.getPriceCode() == PriceCodes.NewRelease) && (each.getDaysRented() > 1)) {
-                    frequentRenterPoints++;
-                }
-                result += decorator.decorateFilm(movie.getTitle(), currentPrice);
+
                 totalAmount += currentPrice;
             }
         }
-        result += decorator.decorateAmount(totalAmount);
-        result += decorator.decoratePoint(frequentRenterPoints);
-        return result;
+
+        return totalAmount;
     }
 
     public double getCurrentMoviePrice(Rental rental, Movie movie) {
         double currentPrice = 0;
         PriceCodes priceCode = movie.getPriceCode();
-        // Determine amounts for each line
         currentPrice += priceCode.getStartPrice();
         if (rental.getDaysRented() > priceCode.getLowCostDaysCount()) {
             currentPrice += (rental.getDaysRented() - priceCode.getLowCostDaysCount()) * priceCode.getAmountPrice();
         }
         return currentPrice;
+    }
+
+    public List<Rental> getmRentals() {
+        return mRentals;
     }
 }

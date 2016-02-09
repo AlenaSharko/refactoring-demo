@@ -8,6 +8,7 @@ package com.scrumtrek.simplestore;
 import com.scrumtrek.simplestore.decorator.BaseStringDecorator;
 import com.scrumtrek.simplestore.decorator.Decorator;
 import com.scrumtrek.simplestore.decorator.HTMLDecorate;
+import com.scrumtrek.simplestore.reporet.Reporter;
 import org.junit.*;
 
 import static org.junit.Assert.assertEquals;
@@ -38,12 +39,12 @@ public class CustomerTest {
     }
 
     /**
-     * Test of statement method, of class Customer.
+     * Test of getTotalAmount method, of class Customer.
      */
     @Test
     public void testRegularStatement() {
-        System.out.println("statement");
-        Customer instance = new Customer("Igor Startsev", new BaseStringDecorator());
+        System.out.println("getTotalAmount");
+        Customer instance = new Customer("Igor Startsev");
         Movie m = new Movie("007", PriceCodes.Regular);
         Rental rental = new Rental(3);
         rental.addMovie(m);
@@ -52,9 +53,8 @@ public class CustomerTest {
         String expResult = "Rental record for " + instance.getName() + "\n";
         expResult += "\t" + m.getTitle() + "\t" + 3.5 + "\n";
         expResult += "Amount owed is 3.5\n";
-        expResult += "You earned 1 frequent renter points.";
 
-        String result = instance.statement();
+        String result = new Reporter().getReport(instance, new BaseStringDecorator(), true, true, true);
         System.out.println("result=" + result);
         System.out.println("expRes=" + expResult);
         //result += "Amount owed is 3.5 \n";
@@ -66,8 +66,8 @@ public class CustomerTest {
 
     @Test
     public void testChildrensStatement() {
-        System.out.println("statement");
-        Customer instance = new Customer("Igor Startsev", new BaseStringDecorator());
+        System.out.println("getTotalAmount");
+        Customer instance = new Customer("Igor Startsev");
         Movie m = new Movie("007", PriceCodes.Childrens);
         Rental rental = new Rental(3);
         rental.addMovie(m);
@@ -75,9 +75,9 @@ public class CustomerTest {
         String expResult = "Rental record for " + instance.getName() + "\n";
         expResult += "\t" + m.getTitle() + "\t" + 1.5 + "\n";
         expResult += "Amount owed is 1.5\n";
-        expResult += "You earned 1 frequent renter points.";
+//        expResult += "You earned 1 frequent renter points.";
 
-        String result = instance.statement();
+        String result = new Reporter().getReport(instance, new BaseStringDecorator(), true, true, true);
         System.out.println("result=" + result);
         System.out.println("expRes=" + expResult);
         //result += "Amount owed is 3.5 \n";
@@ -89,8 +89,8 @@ public class CustomerTest {
 
     @Test
     public void tesNewReleaseStatement() {
-        System.out.println("statement");
-        Customer instance = new Customer("Igor Startsev", new BaseStringDecorator());
+        System.out.println("getTotalAmount");
+        Customer instance = new Customer("Igor Startsev");
         Movie m = new Movie("007", PriceCodes.NewRelease);
         Rental rental = new Rental(3);
         rental.addMovie(m);
@@ -98,9 +98,8 @@ public class CustomerTest {
         String expResult = "Rental record for " + instance.getName() + "\n";
         expResult += "\t" + m.getTitle() + "\t" + 9.0 + "\n";
         expResult += "Amount owed is 9.0\n";
-        expResult += "You earned 2 frequent renter points.";
 
-        String result = instance.statement();
+        String result = new Reporter().getReport(instance, new BaseStringDecorator(), true, true, true);
         System.out.println("result=" + result);
         System.out.println("expRes=" + expResult);
         //result += "Amount owed is 3.5 \n";
@@ -112,8 +111,8 @@ public class CustomerTest {
 
     @Test
     public void tesNewReleaseOneDayStatement() {
-        System.out.println("statement");
-        Customer instance = new Customer("Igor Startsev", new BaseStringDecorator());
+        System.out.println("getTotalAmount");
+        Customer instance = new Customer("Igor Startsev");
         Movie m = new Movie("007", PriceCodes.NewRelease);
         Rental rental = new Rental(1);
         rental.addMovie(m);
@@ -121,9 +120,8 @@ public class CustomerTest {
         String expResult = "Rental record for " + instance.getName() + "\n";
         expResult += "\t" + m.getTitle() + "\t" + 3.0 + "\n";
         expResult += "Amount owed is 3.0\n";
-        expResult += "You earned 1 frequent renter points.";
 
-        String result = instance.statement();
+        String result = new Reporter().getReport(instance, new BaseStringDecorator(), true, true, true);
         System.out.println("result=" + result);
         System.out.println("expRes=" + expResult);
         //result += "Amount owed is 3.5 \n";
@@ -135,8 +133,8 @@ public class CustomerTest {
 
     @Test
     public void testXXXStatement() {
-        System.out.println("statement");
-        Customer instance = new Customer("Igor Startsev", new BaseStringDecorator());
+        System.out.println("getTotalAmount");
+        Customer instance = new Customer("Igor Startsev");
         Movie m = new Movie("007", PriceCodes.XXX);
         Rental rental = new Rental(1);
         rental.addMovie(m);
@@ -144,9 +142,8 @@ public class CustomerTest {
         String expResult = "Rental record for " + instance.getName() + "\n";
         expResult += "\t" + m.getTitle() + "\t" + 2.0 + "\n";
         expResult += "Amount owed is 2.0\n";
-        expResult += "You earned 1 frequent renter points.";
 
-        String result = instance.statement();
+        String result = new Reporter().getReport(instance, new BaseStringDecorator(), true, true, true);
         System.out.println("result=" + result);
         System.out.println("expRes=" + expResult);
         //result += "Amount owed is 3.5 \n";
@@ -156,8 +153,8 @@ public class CustomerTest {
 
     @Test
     public void testXXXWithMoreDays() {
-        System.out.println("statement");
-        Customer instance = new Customer("Igor Startsev", new BaseStringDecorator());
+        System.out.println("getTotalAmount");
+        Customer instance = new Customer("Igor Startsev");
         Movie m = new Movie("007", PriceCodes.XXX);
         Rental rental = new Rental(6);
         rental.addMovie(m);
@@ -165,9 +162,8 @@ public class CustomerTest {
         String expResult = "Rental record for " + instance.getName() + "\n";
         expResult += "\t" + m.getTitle() + "\t" + 2.8 + "\n";
         expResult += "Amount owed is 2.8\n";
-        expResult += "You earned 1 frequent renter points.";
 
-        String result = instance.statement();
+        String result = new Reporter().getReport(instance, new BaseStringDecorator(), true, true, true);
         System.out.println("result=" + result);
         System.out.println("expRes=" + expResult);
         //result += "Amount owed is 3.5 \n";
@@ -178,7 +174,7 @@ public class CustomerTest {
 
     @Test
     public void getCurrentMoviePriceNewReleaseTest() {
-        Customer cust = new Customer("Stasik", new BaseStringDecorator());
+        Customer cust = new Customer("Stasik");
         Movie movie = new Movie("Star Treck", PriceCodes.NewRelease);
         Rental rental = new Rental(1);
         rental.addMovie(movie);
@@ -189,7 +185,7 @@ public class CustomerTest {
 
     @Test
     public void getCurrentMoviePriceChildrenTest() {
-        Customer cust = new Customer("Stasik", new BaseStringDecorator());
+        Customer cust = new Customer("Stasik");
         Movie movie = new Movie("Cinderella", PriceCodes.Childrens);
         Rental rental = new Rental(1);
         rental.addMovie(movie);
@@ -200,7 +196,7 @@ public class CustomerTest {
 
     @Test
     public void getCurrentMoviePriceRegularTest() {
-        Customer cust = new Customer("Stasik", new BaseStringDecorator());
+        Customer cust = new Customer("Stasik");
         Movie movie = new Movie("Cinderella", PriceCodes.Regular);
         Rental rental = new Rental(1);
         rental.addMovie(movie);
@@ -211,8 +207,8 @@ public class CustomerTest {
 
     @Test
     public void testRegularOneDayStatement() {
-        System.out.println("statement");
-        Customer instance = new Customer("Igor Startsev", new BaseStringDecorator());
+        System.out.println("getTotalAmount");
+        Customer instance = new Customer("Igor Startsev");
         Movie m = new Movie("007", PriceCodes.Regular);
         Rental rental = new Rental(1);
         rental.addMovie(m);
@@ -220,9 +216,8 @@ public class CustomerTest {
         String expResult = "Rental record for " + instance.getName() + "\n";
         expResult += "\t" + m.getTitle() + "\t" + 2.0 + "\n";
         expResult += "Amount owed is 2.0\n";
-        expResult += "You earned 1 frequent renter points.";
 
-        String result = instance.statement();
+        String result = new Reporter().getReport(instance, new BaseStringDecorator(), true, true, true);
         System.out.println("result=" + result);
         System.out.println("expRes=" + expResult);
         //result += "Amount owed is 3.5 \n";
@@ -234,8 +229,8 @@ public class CustomerTest {
 
     @Test
     public void testChildrensOneDayStatement() {
-        System.out.println("statement");
-        Customer instance = new Customer("Igor Startsev", new BaseStringDecorator());
+        System.out.println("getTotalAmount");
+        Customer instance = new Customer("Igor Startsev");
         Movie m = new Movie("007", PriceCodes.Childrens);
         Rental rental = new Rental(4);
         rental.addMovie(m);
@@ -243,9 +238,7 @@ public class CustomerTest {
         String expResult = "Rental record for " + instance.getName() + "\n";
         expResult += "\t" + m.getTitle() + "\t" + 3.0 + "\n";
         expResult += "Amount owed is 3.0\n";
-        expResult += "You earned 1 frequent renter points.";
-
-        String result = instance.statement();
+        String result = new Reporter().getReport(instance, new BaseStringDecorator(), true, true, true);
         System.out.println("result=" + result);
         System.out.println("expRes=" + expResult);
         //result += "Amount owed is 3.5 \n";
@@ -297,4 +290,77 @@ public class CustomerTest {
         Assert.assertEquals(Report.EARNED_TEXT.getMessage() + 100 + Report.END_PART.getMessage() + endHTML, decoratePoints);
     }
 
+    @Test
+    public void onlyHeaderTest() {
+        Customer instance = new Customer("Igor Startsev");
+        Movie m = new Movie("007", PriceCodes.Childrens);
+        Rental rental = new Rental(4);
+        rental.addMovie(m);
+        instance.addRental(rental);
+        String expResult = "Rental record for " + instance.getName() + "\n";
+        String result = new Reporter().getReport(instance, new BaseStringDecorator(), true, false, false);
+        System.out.println("result=" + result);
+        System.out.println("expRes=" + expResult);
+        assertTrue(result.equals(expResult));
+    }
+
+    @Test
+    public void onlyHeaderAndRentalTest() {
+        Customer instance = new Customer("Igor Startsev");
+        Movie m = new Movie("007", PriceCodes.Childrens);
+        Rental rental = new Rental(4);
+        rental.addMovie(m);
+        instance.addRental(rental);
+        String expResult = "Rental record for " + instance.getName() + "\n";
+        expResult += "\t" + m.getTitle() + "\t" + 3.0 + "\n";
+        String result = new Reporter().getReport(instance, new BaseStringDecorator(), true, true, false);
+        System.out.println("result=" + result);
+        System.out.println("expRes=" + expResult);
+        assertTrue(result.equals(expResult));
+    }
+
+    @Test
+    public void onlyHeaderAndFooterTest() {
+        Customer instance = new Customer("Igor Startsev");
+        Movie m = new Movie("007", PriceCodes.Childrens);
+        Rental rental = new Rental(4);
+        rental.addMovie(m);
+        instance.addRental(rental);
+        String expResult = "Rental record for " + instance.getName() + "\n";
+        expResult += "Amount owed is 3.0\n";
+        String result = new Reporter().getReport(instance, new BaseStringDecorator(), true, false, true);
+        System.out.println("result=" + result);
+        System.out.println("expRes=" + expResult);
+        assertTrue(result.equals(expResult));
+    }
+
+    @Test
+    public void onlyRentalTest() {
+        Customer instance = new Customer("Igor Startsev");
+        Movie m = new Movie("007", PriceCodes.Childrens);
+        Rental rental = new Rental(4);
+        rental.addMovie(m);
+        instance.addRental(rental);
+        String expResult = "";
+        expResult += "\t" + m.getTitle() + "\t" + 3.0 + "\n";
+        String result = new Reporter().getReport(instance, new BaseStringDecorator(), false, true, false);
+        System.out.println("result=" + result);
+        System.out.println("expRes=" + expResult);
+        assertTrue(result.equals(expResult));
+    }
+
+    @Test
+    public void onlyFooterTest() {
+        Customer instance = new Customer("Igor Startsev");
+        Movie m = new Movie("007", PriceCodes.Childrens);
+        Rental rental = new Rental(4);
+        rental.addMovie(m);
+        instance.addRental(rental);
+        String expResult = "";
+        expResult += "Amount owed is 3.0\n";
+        String result = new Reporter().getReport(instance, new BaseStringDecorator(), false, false, true);
+        System.out.println("result=" + result);
+        System.out.println("expRes=" + expResult);
+        assertTrue(result.equals(expResult));
+    }
 }
