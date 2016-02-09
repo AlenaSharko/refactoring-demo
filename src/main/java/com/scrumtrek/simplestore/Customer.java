@@ -24,43 +24,34 @@ public class Customer {
         mRentals.add(arg);
     }
 
-    public String Statement() {
+    public String statement() {
         double totalAmount = 0;
         int frequentRenterPoints = 0;
-
         String result = decorator.decorateName(mName);
         for (Rental each : mRentals) {
-
-            double currentPrice = getCurrentMoviePrice(each); // Add frequent renter points
-            frequentRenterPoints++;
-
-            // Add bonus for a two-day new-release rental
-            if ((each.getMovie().getPriceCode() == PriceCodes.NewRelease) && (each.getDaysRented() > 1)) {
+            for(Movie movie : each.getMovieList()) {
+                double currentPrice = getCurrentMoviePrice(each, movie);
                 frequentRenterPoints++;
+                if ((movie.getPriceCode() == PriceCodes.NewRelease) && (each.getDaysRented() > 1)) {
+                    frequentRenterPoints++;
+                }
+                result += decorator.decorateFilm(movie.getTitle(), currentPrice);
+                totalAmount += currentPrice;
             }
-
-            // Show figures for this rental
-            result += decorator.decorateFilm(each.getMovie().getTitle(), currentPrice);
-
-            totalAmount += currentPrice;
         }
-
-        // Add footer lines
         result += decorator.decorateAmount(totalAmount);
         result += decorator.decoratePoint(frequentRenterPoints);
         return result;
     }
 
-    public double getCurrentMoviePrice(Rental rental) {
+    public double getCurrentMoviePrice(Rental rental, Movie movie) {
         double currentPrice = 0;
-        PriceCodes priceCode = rental.getMovie().getPriceCode();
+        PriceCodes priceCode = movie.getPriceCode();
         // Determine amounts for each line
         currentPrice += priceCode.getStartPrice();
         if (rental.getDaysRented() > priceCode.getLowCostDaysCount()) {
             currentPrice += (rental.getDaysRented() - priceCode.getLowCostDaysCount()) * priceCode.getAmountPrice();
         }
-
         return currentPrice;
-
     }
 }
