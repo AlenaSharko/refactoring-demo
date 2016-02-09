@@ -57,10 +57,9 @@ public class CustomerTest {
         String result = new Reporter().getReport(instance, new BaseStringDecorator(), true, true, true);
         System.out.println("result=" + result);
         System.out.println("expRes=" + expResult);
-        //result += "Amount owed is 3.5 \n";
-        // result += "You earned 1 frequent renter points.";
+
         assertTrue(result.equals(expResult));
-        // TODO review the generated test code and remove the default call to fail.
+
 
     }
 
@@ -75,16 +74,11 @@ public class CustomerTest {
         String expResult = "Rental record for " + instance.getName() + "\n";
         expResult += "\t" + m.getTitle() + "\t" + 1.5 + "\n";
         expResult += "Amount owed is 1.5\n";
-//        expResult += "You earned 1 frequent renter points.";
 
         String result = new Reporter().getReport(instance, new BaseStringDecorator(), true, true, true);
         System.out.println("result=" + result);
         System.out.println("expRes=" + expResult);
-        //result += "Amount owed is 3.5 \n";
-        // result += "You earned 1 frequent renter points.";
         assertTrue(result.equals(expResult));
-        // TODO review the generated test code and remove the default call to fail.
-
     }
 
     @Test
@@ -102,10 +96,7 @@ public class CustomerTest {
         String result = new Reporter().getReport(instance, new BaseStringDecorator(), true, true, true);
         System.out.println("result=" + result);
         System.out.println("expRes=" + expResult);
-        //result += "Amount owed is 3.5 \n";
-        // result += "You earned 1 frequent renter points.";
         assertTrue(result.equals(expResult));
-        // TODO review the generated test code and remove the default call to fail.
 
     }
 
@@ -124,10 +115,7 @@ public class CustomerTest {
         String result = new Reporter().getReport(instance, new BaseStringDecorator(), true, true, true);
         System.out.println("result=" + result);
         System.out.println("expRes=" + expResult);
-        //result += "Amount owed is 3.5 \n";
-        // result += "You earned 1 frequent renter points.";
         assertTrue(result.equals(expResult));
-        // TODO review the generated test code and remove the default call to fail.
 
     }
 
@@ -179,7 +167,7 @@ public class CustomerTest {
         Rental rental = new Rental(1);
         rental.addMovie(movie);
         cust.addRental(rental);
-        double actualPrice = cust.getCurrentMoviePrice(rental,movie);
+        double actualPrice = cust.getCurrentMoviePrice(rental, movie);
         assertEquals(3.0, actualPrice, 0.0);
     }
 
@@ -241,10 +229,9 @@ public class CustomerTest {
         String result = new Reporter().getReport(instance, new BaseStringDecorator(), true, true, true);
         System.out.println("result=" + result);
         System.out.println("expRes=" + expResult);
-        //result += "Amount owed is 3.5 \n";
-        // result += "You earned 1 frequent renter points.";
+
         assertTrue(result.equals(expResult));
-        // TODO review the generated test code and remove the default call to fail.
+
 
     }
 
