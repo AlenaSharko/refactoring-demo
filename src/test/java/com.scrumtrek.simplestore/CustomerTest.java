@@ -27,7 +27,7 @@ public class CustomerTest {
     public void statementNewReleaseTest() {
         movie.setPriceCode(new NewReleasePriceCode());
         testCustomer.addRental(new Rental(movie, 1));
-        String actualString = testCustomer.Statement();
+        String actualString = testCustomer.statement();
 
         Assert.assertEquals("Rental record for test\n" +
                 "\ttestMovie\t3.0\n" +
@@ -39,7 +39,7 @@ public class CustomerTest {
     public void statementNewReleaseWithMoreDaysTest() {
         movie.setPriceCode(new NewReleasePriceCode());
         testCustomer.addRental(new Rental(movie, 3));
-        String actualString = testCustomer.Statement();
+        String actualString = testCustomer.statement();
 
         Assert.assertEquals("Rental record for test\n" +
                 "\ttestMovie\t9.0\n" +
@@ -52,7 +52,7 @@ public class CustomerTest {
         movie.setPriceCode(new RegularPriceCode());
         testCustomer.addRental(new Rental(movie, 1));
 
-        String actualString = testCustomer.Statement();
+        String actualString = testCustomer.statement();
         //boolean bool = actualString.contains("testMovie\t2.0");
         //Assert.assertTrue(bool);
 
@@ -67,7 +67,7 @@ public class CustomerTest {
         movie.setPriceCode(new RegularPriceCode());
         testCustomer.addRental(new Rental(movie, 3));
 
-        String actualString = testCustomer.Statement();
+        String actualString = testCustomer.statement();
 
         Assert.assertEquals("Rental record for test\n" +
                 "\ttestMovie\t3.5\n" +
@@ -80,7 +80,7 @@ public class CustomerTest {
         movie.setPriceCode(new ChildrenPriceCode());
         testCustomer.addRental(new Rental(movie, 2));
 
-        String actualString = testCustomer.Statement();
+        String actualString = testCustomer.statement();
 
         Assert.assertEquals("Rental record for test\n" +
                 "\ttestMovie\t1.5\n" +
@@ -93,7 +93,7 @@ public class CustomerTest {
         movie.setPriceCode(new ChildrenPriceCode());
         testCustomer.addRental(new Rental(movie, 4));
 
-        String actualString = testCustomer.Statement();
+        String actualString = testCustomer.statement();
 
         Assert.assertEquals("Rental record for test\n" +
                 "\ttestMovie\t1.5\n" +
@@ -107,7 +107,7 @@ public class CustomerTest {
         testCustomer.addRental(new Rental(movie, 5));
         testCustomer.addRental(new Rental(movie, 1));
 
-        String actualString = testCustomer.Statement();
+        String actualString = testCustomer.statement();
 
         Assert.assertEquals("Rental record for test\n" +
                 "\ttestMovie\t3.0\n" +

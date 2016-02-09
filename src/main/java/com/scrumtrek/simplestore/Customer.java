@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Customer {
-    //todo непонятное обозначенние переменных m?
+
     private String customerName;
     private List<Rental> customerRentals = new ArrayList<Rental>();
 
@@ -20,8 +20,7 @@ public class Customer {
         customerRentals.add(arg);
     }
 
-    //todo приоритет "2", statment
-    public String Statement() {
+    public String statement() {
         double totalAmount = 0;
         int frequentRenterPoints = 0;
         String result = "Rental record for " + customerName + "\n";

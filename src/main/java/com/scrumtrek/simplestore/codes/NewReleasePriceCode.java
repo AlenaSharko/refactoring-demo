@@ -6,7 +6,7 @@ public class NewReleasePriceCode implements PriceCodes {
 
     @Override
     public double getAmount(double amount, int rentalDays) {
-        return rentalDays * NEW_RELEASE_BONUS;
+        return (double)rentalDays * NEW_RELEASE_BONUS;
     }
 
     @Override
