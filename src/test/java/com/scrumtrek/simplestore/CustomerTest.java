@@ -122,7 +122,45 @@ public class CustomerTest {
         assertTrue(result.equals(expResult));
         // TODO review the generated test code and remove the default call to fail.
 
-    }    
+    }
+
+    @Test
+    public void testXXXStatement() {
+        System.out.println("Statement");
+        Customer instance = new Customer("Igor Startsev");
+        Movie m = new Movie("007", PriceCodes.XXX);
+        instance.addRental(new Rental(m, 1));
+        String expResult = "Rental record for " + instance.getName() + "\n";
+        expResult += "\t" + m.getTitle() + "\t" + 2.0 + "\n";
+        expResult += "Amount owed is 2.0\n";
+        expResult += "You earned 1 frequent renter points.";
+
+        String result = instance.Statement();
+        System.out.println("result=" + result);
+        System.out.println("expRes=" + expResult);
+        //result += "Amount owed is 3.5 \n";
+        // result += "You earned 1 frequent renter points.";
+        assertTrue(result.equals(expResult));
+    }
+
+    @Test
+    public void testXXXWithMoreDays() {
+        System.out.println("Statement");
+        Customer instance = new Customer("Igor Startsev");
+        Movie m = new Movie("007", PriceCodes.XXX);
+        instance.addRental(new Rental(m, 6));
+        String expResult = "Rental record for " + instance.getName() + "\n";
+        expResult += "\t" + m.getTitle() + "\t" + 2.8 + "\n";
+        expResult += "Amount owed is 2.8\n";
+        expResult += "You earned 1 frequent renter points.";
+
+        String result = instance.Statement();
+        System.out.println("result=" + result);
+        System.out.println("expRes=" + expResult);
+        //result += "Amount owed is 3.5 \n";
+        // result += "You earned 1 frequent renter points.";
+        assertTrue(result.equals(expResult));
+    }
     
     
     @Test

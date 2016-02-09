@@ -4,7 +4,8 @@ public enum PriceCodes {
 
     Regular(2.0, 1.5, 2),
     NewRelease(0.0, 3.0, 0),
-    Childrens(1.5, 1.5, 3);
+    Childrens(1.5, 1.5, 3),
+    XXX(2.0, 0.8, 5);
 
     private double startPrice;
     private double amountPrice;
