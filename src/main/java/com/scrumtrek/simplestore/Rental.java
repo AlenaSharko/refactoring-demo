@@ -1,39 +1,20 @@
 package com.scrumtrek.simplestore;
 
-
-import com.scrumtrek.simplestore.codes.NewReleasePriceCode;
-
-
 public class Rental {
-    private Movie movieName;
-    private int daysRented;
+	private Movie m_Movie;
+	private int m_DaysRented;
 
-    public Rental(Movie movie, int daysRented) {
-        movieName = movie;
-        this.daysRented = daysRented;
-    }
+	public Rental(Movie movie, int daysRented) {
+		m_Movie = movie;
+		m_DaysRented = daysRented;
+	}
 
-    public int getDaysRented() {
-        return daysRented;
-    }
+	public int getDaysRented() {
+		return m_DaysRented;
+	}
 
-    public Movie getMovie() {
-        return movieName;
-    }
-
-    public double getAmount() {
-        double thisAmount = 0.0;
-        thisAmount = getMovie().getPriceCode().getAmount(thisAmount, daysRented);
-        return thisAmount;
-    }
-
-    public int getUpdatedFreqPoints() {
-        // Add bonus for a two-day new-release rental
-        if ((getMovie().getPriceCode().getName().equals(NewReleasePriceCode.NEW_RELEASE_PRICE_CODE_NAME) &&
-                (getDaysRented() > 1))) {
-            return 2;
-        }
-        return 1;
-    }
+	public Movie getMovie() {
+		return m_Movie;
+	}
 }
 
