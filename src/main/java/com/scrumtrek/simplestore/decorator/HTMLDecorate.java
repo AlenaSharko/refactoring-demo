@@ -9,20 +9,23 @@ public class HTMLDecorate implements Decorator {
     private static final String END_HTML = "    </body>\n" +
             "</html>";
 
-    private final static String brTag = "<br>";
+    private static final String BR_TAG = "<br>";
 
     @Override
     public String decorateName(String name) {
-        return START_HTML + Report.TITLE.getMessage() + name + brTag;
+        return START_HTML + Report.TITLE.getMessage() + name + BR_TAG;
     }
+
     @Override
     public String decorateFilm(String title, double amount) {
-        return title + setBold(amount) + brTag;
+        return title + setBold(amount) + BR_TAG;
     }
+
     @Override
     public String decorateAmount(double totalAmount) {
-        return Report.AMOUNT_TEXT_REPORT.getMessage() + setBold(totalAmount) + brTag;
+        return Report.AMOUNT_TEXT_REPORT.getMessage() + setBold(totalAmount) + BR_TAG;
     }
+
     @Override
     public String decoratePoint(int points) {
         return Report.EARNED_TEXT.getMessage() + points + Report.END_PART.getMessage() + END_HTML;

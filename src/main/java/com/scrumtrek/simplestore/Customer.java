@@ -1,6 +1,5 @@
 package com.scrumtrek.simplestore;
 
-import com.scrumtrek.simplestore.decorator.Decorator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,10 +7,6 @@ import java.util.List;
 public class Customer {
 
     private String mName;
-
-    public Customer() {
-        super();
-    }
 
     private List<Rental> mRentals = new ArrayList<Rental>();
 
@@ -31,7 +26,7 @@ public class Customer {
         double totalAmount = 0;
 
         for (Rental each : mRentals) {
-            for(Movie movie : each.getMovieList()) {
+            for (Movie movie : each.getMovieList()) {
                 double currentPrice = getCurrentMoviePrice(each, movie);
 
                 totalAmount += currentPrice;

@@ -10,20 +10,20 @@ import java.util.List;
 public class Reporter {
     public String getReport(Customer customer, Decorator decorator, boolean header, boolean rental, boolean footer) {
         String result = "";
-        if(header) {
+        if (header) {
             result += decorator.decorateName(customer.getName());
         }
-        if(rental) {
+        if (rental) {
             List<Rental> rentalList = customer.getmRentals();
             for (Rental each : rentalList) {
-                for(Movie movie : each.getMovieList()) {
+                for (Movie movie : each.getMovieList()) {
                     double currentPrice = customer.getCurrentMoviePrice(each, movie);
 
                     result += decorator.decorateFilm(movie.getTitle(), currentPrice);
                 }
             }
         }
-        if(footer) {
+        if (footer) {
             result += decorator.decorateAmount(customer.getTotalAmount());
         }
         return result;

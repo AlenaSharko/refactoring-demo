@@ -363,4 +363,18 @@ public class CustomerTest {
         System.out.println("expRes=" + expResult);
         assertTrue(result.equals(expResult));
     }
+
+    @Test
+    public void withoutReportTest() {
+        Customer instance = new Customer("Igor Startsev");
+        Movie m = new Movie("007", PriceCodes.Childrens);
+        Rental rental = new Rental(4);
+        rental.addMovie(m);
+        instance.addRental(rental);
+        String expResult = "";
+        String result = new Reporter().getReport(instance, new BaseStringDecorator(), false, false, false);
+        System.out.println("result=" + result);
+        System.out.println("expRes=" + expResult);
+        assertTrue(result.equals(expResult));
+    }
 }
